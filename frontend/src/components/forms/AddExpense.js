@@ -46,10 +46,16 @@ const AddExpense = (props) => {
     e.preventDefault();
     setIsClicked(false);
   };
+  const resetValidityHandler = (e) => {
+    if (e.key === "Escape") setIsClicked(false);
+  };
 
   return (
     <Card>
-      <form className={styles["Add-expense__form"]}>
+      <form
+        className={styles["Add-expense__form"]}
+        onKeyDown={resetValidityHandler}
+      >
         <div
           className={`${styles["expense"]} ${
             isClicked ? "" : styles["hidden"]

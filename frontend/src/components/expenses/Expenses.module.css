@@ -3,7 +3,11 @@
   padding: 0.3rem 0.5rem;
   display: flex;
   justify-content: space-between;
-  background-color: rgb(199, 197, 197);
+  background-image: linear-gradient(
+    to right,
+    rgb(218, 195, 195),
+    rgb(216, 198, 198)
+  );
   margin: 1rem;
   border-radius: 15px;
 }
@@ -16,6 +20,7 @@
   font-size: 1.4rem;
   font-weight: 600;
   text-align: center;
+  color: lightslategray;
 }
 .expense {
   width: 30%;
@@ -25,7 +30,7 @@
   font-size: 1.2rem;
   font-weight: 600;
   margin: 1rem 2rem;
-  color: bisque;
+  color: teal;
 }
 
 select {
