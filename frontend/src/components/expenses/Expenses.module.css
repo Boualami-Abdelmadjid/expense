@@ -1,0 +1,50 @@
+.expenseItem {
+  margin-inline: 3rem;
+  padding: 0.3rem 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(199, 197, 197);
+  margin: 1rem;
+  border-radius: 15px;
+}
+
+.expenseItem:not(:last-child) {
+  border-bottom: 1px solid grey;
+}
+
+.expenseItem p {
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-align: center;
+}
+.expense {
+  width: 30%;
+}
+.total {
+  text-align: right;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 1rem 2rem;
+  color: bisque;
+}
+
+select {
+  font: inherit;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 6px;
+  display: inline-block;
+  position: relative;
+  left: 48%;
+  transform: translateX(-50%);
+  margin-top: 0.4rem;
+}
+
+ion-icon {
+  width: 2rem;
+  height: 2rem;
+  margin-right: 1rem;
+  color: rgb(211, 68, 68);
+  cursor: pointer;
+}
