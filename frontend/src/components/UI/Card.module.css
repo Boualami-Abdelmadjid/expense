@@ -1,8 +1,10 @@
 .Card {
-  background-color: grey;
-  width: 80%;
+  background-image: linear-gradient(to bottom right, #ff928b, #ffac81);
+  max-width: 80%;
+  min-width: 900px;
   border-radius: 15px;
   margin-inline: 10%;
   display: inline-block;
   margin-block-start: 1rem;
+  backdrop-filter: blur(10px);
 }

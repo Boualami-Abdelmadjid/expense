@@ -9,6 +9,8 @@
 .App {
   text-align: center;
   font-family: "Roboto", sans-serif;
+  background-image: linear-gradient(to bottom right, #556270, #ff6b6b);
+  min-height: 100vh;
 }
 
 .App-logo {

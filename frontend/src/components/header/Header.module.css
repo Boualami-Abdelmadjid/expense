@@ -1,6 +1,8 @@
 .header {
-  background-color: var(--headerColor);
-  padding: 1rem 0;
+  color: rgba(245, 245, 245, 0.774);
+  z-index: 500;
+  padding: 1rem;
+  text-transform: uppercase;
 }
 .header h1 {
   text-align: left;
