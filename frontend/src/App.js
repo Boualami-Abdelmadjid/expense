@@ -43,7 +43,7 @@ function App() {
       number: identifier.value,
       time: identifier.time,
     });
-    fetch(`delete/`, {
+    fetch(`delete/${thisMonth}`, {
       method: "POST",
       mode: "same-origin",
       headers: {
@@ -52,16 +52,17 @@ function App() {
         "X-CSRFToken": csrftoken,
       },
       body: formData,
-    }).then(()=> fetch(`get/${thisMonth}`))
+    })
       .then((res) => res.json())
       .then((data) => setExpenses(data));
   };
+  const addExpenseHandler = (expenses) => setExpenses(expenses);
 
   return (
     <div className="App">
       <Header />
       <csrfContext.Provider value={{ getCookie: getCookie }}>
-        <AddExpense onAdd={filterChangeHandler} />
+        <AddExpense onAdd={addExpenseHandler} />
       </csrfContext.Provider>
       <Expenses
         expenses={expenses}

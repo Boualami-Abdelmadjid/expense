@@ -21,8 +21,8 @@ from .views import addItem, getExepenses, deleteItem
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('add/', addItem , name='add'),
-    path('get/<str:month>', getExepenses),
-    path('delete/',deleteItem, name='delete'),
+    path('add/<str:month>', addItem , name='add'),
+    path('get/<str:month>', getExepenses, name='getExpenses'),
+    path('delete/<str:month>',deleteItem, name='delete'),
     path('', TemplateView.as_view(template_name='index.html'))
 ]

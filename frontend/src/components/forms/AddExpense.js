@@ -29,7 +29,7 @@ const AddExpense = (props) => {
       setIsClicked(true);
     }
     if (isClicked === true) {
-      fetch(`add/`, {
+      fetch(`add/${thisMonth}`, {
         method: "POST",
         mode: "same-origin",
         headers: {
@@ -38,8 +38,9 @@ const AddExpense = (props) => {
           "X-CSRFToken": csrftoken,
         },
         body: formData,
-      });
-      props.onAdd(thisMonth);
+      })
+        .then((res) => res.json())
+        .then((res) => props.onAdd(res));
       expenseRef.current.value = valueRef.current.value = "";
     }
     expenseRef.current.focus();
