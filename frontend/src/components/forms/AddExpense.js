@@ -8,9 +8,12 @@ const AddExpense = (props) => {
   const thisMonth = (new Date().getMonth() + 1).toString().padStart(2, 0);
   // hooks
   const [isClicked, setIsClicked] = useState(false);
+  const [transType, setTransType] = useState("expense");
   const csrfCtx = useContext(csrfContext);
   const expenseRef = useRef();
   const valueRef = useRef();
+  const incomeRadioRef = useRef();
+  const expenseRadioRef = useRef();
 
   const csrftoken = csrfCtx.getCookie("csrftoken");
 
@@ -24,7 +27,9 @@ const AddExpense = (props) => {
     const formData = JSON.stringify({
       name: expenseRef.current.value,
       number: valueRef.current.value,
+      type: transType,
     });
+    console.log(formData);
     if (isClicked === false) {
       setIsClicked(true);
     }
@@ -52,6 +57,10 @@ const AddExpense = (props) => {
   const ValidityHandler = (e) => {
     if (e.key === "Escape") setIsClicked(false);
   };
+  function radioHandler() {
+    this.current.checked = true;
+    setTransType(this.current.id);
+  }
 
   return (
     <Card>
@@ -83,7 +92,20 @@ const AddExpense = (props) => {
             step="10"
             type="number"
           />
+          <div className={styles["radioDiv"]}>
+            <input
+              type="radio"
+              name="radio"
+              ref={expenseRadioRef}
+              id="expense"
+              defaultChecked
+            />
+            <span onClick={radioHandler.bind(expenseRadioRef)}>Expense</span>
+            <input type="radio" name="radio" ref={incomeRadioRef} id="income" />
+            <span onClick={radioHandler.bind(incomeRadioRef)}>Income</span>
+          </div>
         </div>
+        <div></div>
         <button
           className={`${styles["custom-btn"]} ${styles["addBtn"]} ${
             !isClicked ? styles["hidden"] : ""

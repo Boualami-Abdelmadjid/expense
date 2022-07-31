@@ -12,7 +12,8 @@ def addItem(request, month):
       itemObject = json.loads(request.body)
       itemObjectName = itemObject['name']
       itemObjectNumber = itemObject['number']
-      expenseModel.objects.create(expense=itemObjectName, value=itemObjectNumber)
+      itemObjectType = itemObject['type']
+      expenseModel.objects.create(expense=itemObjectName, value=itemObjectNumber, TransType=itemObjectType)
     return redirect('getExpenses', month=month)
 
 @api_view(['GET',])

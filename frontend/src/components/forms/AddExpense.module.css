@@ -102,3 +102,44 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+input[type="radio"] {
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+}
+[type="radio"]:checked + span {
+  background-color: mix(#fff, #f77e21, 84%);
+}
+[type="radio"]:checked + span:before {
+  box-shadow: inset 0 0 0 0.4375em #f77e21;
+}
+span {
+  display: inline-block;
+  align-items: center;
+  padding: 0.375em 0.75em 0.375em 0.375em;
+  border-radius: 99em;
+  transition: 0.25s ease;
+  cursor: pointer;
+  width: max-content;
+}
+span:hover {
+  background-color: mix(#fff, #f77e21, 84%);
+}
+span:before {
+  display: inline-flex;
+  flex-shrink: 0;
+  content: "";
+  background-color: #fff;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  margin-right: 0.375em;
+  transition: 0.25s ease;
+  box-shadow: inset 0 0 0 0.125em #f77e21;
+  position: relative;
+  top: 0.4rem;
+}
+.radioDiv {
+  margin-top: 0.8rem;
+}
