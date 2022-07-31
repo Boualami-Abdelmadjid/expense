@@ -5,4 +5,4 @@ from .models import expenseModel
 class itemsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = expenseModel
-        fields = ['expense','value','time']
+        fields = ['id','expense','value','time', 'TransType']

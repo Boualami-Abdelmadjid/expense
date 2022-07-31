@@ -19,15 +19,24 @@ const months = [
 
 const Expenses = (props) => {
   // Calculate the total of the expenses
-  let total = 0;
-  props.expenses.forEach((exp) => (total += exp.value));
+  let totalExpense = props.expenses
+    .filter((el) => el.TransType === "expense")
+    .reduce((acc, cur) => acc + cur.value, 0);
+  let totalIncome = props.expenses
+    .filter((el) => el.TransType === "income")
+    .reduce((acc, cur) => acc + cur.value, 0);
+
+  let diffenrence = totalIncome - totalExpense;
+
+  // .reduce((acc, cur) => acc.value + cur, 0);
 
   const monthChangedHandler = (enteredMonth) => {
     const monthIndex = months.indexOf(enteredMonth);
     props.onFilter((monthIndex + 1).toString().padStart(2, 0));
   };
-  function deleteHandler(e) {
+  function deleteHandler() {
     props.onDelete(this);
+    console.log(this);
   }
 
   return (
@@ -37,13 +46,15 @@ const Expenses = (props) => {
         {props.expenses.map((item, index) => {
           const day = item.time.split("-")[2];
           const month = months[item.time.split("-")[1] - 1];
+          const type = item.TransType + "Object";
           const identifier = {
-            expense: item.expense,
-            value: item.value,
-            time: item.time,
+            id: item.id,
           };
           return (
-            <li key={index} className={styles["expenseItem"]}>
+            <li
+              key={index}
+              className={`${styles["expenseItem"]} + ${styles[type]}`}
+            >
               <p className={styles.expense + " expense"}>{item.expense}</p>
               <p className="expenseValue">{item.value} Dzd</p>
               <p>
@@ -57,7 +68,9 @@ const Expenses = (props) => {
           );
         })}
       </div>
-      <p className={styles.total}>Total: {total} Dzd</p>
+      <p className={styles.total}>Income: {totalIncome} Dzd</p>
+      <p className={styles.total}>Expense: {totalExpense} Dzd</p>
+      <p className={styles.total}>Difference: {diffenrence} Dzd</p>
     </Card>
   );
 };

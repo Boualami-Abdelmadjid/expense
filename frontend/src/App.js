@@ -39,9 +39,7 @@ function App() {
   const deleteHandler = (identifier) => {
     const csrftoken = getCookie("csrftoken");
     const formData = JSON.stringify({
-      name: identifier.expense,
-      number: identifier.value,
-      time: identifier.time,
+      id: identifier.id,
     });
     fetch(`delete/${thisMonth}`, {
       method: "POST",

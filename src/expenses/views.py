@@ -26,10 +26,9 @@ def getExepenses(request, month):
 def deleteItem(request, month):
   if request.method == 'POST':
     itemObject = json.loads(request.body)
-    itemObjectName = itemObject['name']
-    itemObjectNumber = itemObject['number']
-    itemObjectDate = itemObject['time']
-    expenseModel.objects.filter(expense = itemObjectName, value= itemObjectNumber, time=itemObjectDate).delete()
+    itemObjectId = itemObject['id']
+    print(itemObjectId)
+    expenseModel.objects.filter(id = itemObjectId).delete()
   return redirect('getExpenses', month=month)
     
 
