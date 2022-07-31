@@ -33,28 +33,30 @@ const Expenses = (props) => {
   return (
     <Card>
       <FilterExpenses months={months} onChange={monthChangedHandler} />
-      {props.expenses.map((item, index) => {
-        const day = item.time.split("-")[2];
-        const month = months[item.time.split("-")[1] - 1];
-        const identifier = {
-          expense: item.expense,
-          value: item.value,
-          time: item.time,
-        };
-        return (
-          <li key={index} className={styles.expenseItem}>
-            <p className={styles.expense + " expense"}>{item.expense}</p>
-            <p className="expenseValue">{item.value} Dzd</p>
-            <p>
-              {day} {month}
-            </p>
-            <ion-icon
-              name="trash-outline"
-              onClick={deleteHandler.bind(identifier)}
-            ></ion-icon>
-          </li>
-        );
-      })}
+      <div className={styles["expensesCard"]}>
+        {props.expenses.map((item, index) => {
+          const day = item.time.split("-")[2];
+          const month = months[item.time.split("-")[1] - 1];
+          const identifier = {
+            expense: item.expense,
+            value: item.value,
+            time: item.time,
+          };
+          return (
+            <li key={index} className={styles["expenseItem"]}>
+              <p className={styles.expense + " expense"}>{item.expense}</p>
+              <p className="expenseValue">{item.value} Dzd</p>
+              <p>
+                {day} {month}
+              </p>
+              <ion-icon
+                name="trash-outline"
+                onClick={deleteHandler.bind(identifier)}
+              ></ion-icon>
+            </li>
+          );
+        })}
+      </div>
       <p className={styles.total}>Total: {total} Dzd</p>
     </Card>
   );

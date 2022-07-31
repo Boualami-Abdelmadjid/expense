@@ -56,7 +56,7 @@ ROOT_URLCONF = 'expenses.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['../frontend/build'],
+        'DIRS': ['django/frontend/build'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

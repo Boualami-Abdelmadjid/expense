@@ -53,3 +53,7 @@ ion-icon {
   color: rgb(211, 68, 68);
   cursor: pointer;
 }
+
+.expensesCard {
+  height: 60vh;
+}

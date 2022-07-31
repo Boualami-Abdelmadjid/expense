@@ -15,7 +15,9 @@ const AddExpense = (props) => {
   const csrftoken = csrfCtx.getCookie("csrftoken");
 
   const EnterPressHandler = (e) => {
-    if (e.key === "Enter") buttonClickHandler(e);
+    if (e.key === "Enter") {
+      buttonClickHandler(e);
+    }
   };
   const buttonClickHandler = (e) => {
     e.preventDefault();
@@ -39,23 +41,20 @@ const AddExpense = (props) => {
       });
       props.onAdd(thisMonth);
       expenseRef.current.value = valueRef.current.value = "";
-      expenseRef.current.focus();
     }
+    expenseRef.current.focus();
   };
   const cancelClickHandler = (e) => {
     e.preventDefault();
     setIsClicked(false);
   };
-  const resetValidityHandler = (e) => {
+  const ValidityHandler = (e) => {
     if (e.key === "Escape") setIsClicked(false);
   };
 
   return (
     <Card>
-      <form
-        className={styles["Add-expense__form"]}
-        onKeyDown={resetValidityHandler}
-      >
+      <form className={styles["Add-expense__form"]} onKeyDown={ValidityHandler}>
         <div
           className={`${styles["expense"]} ${
             isClicked ? "" : styles["hidden"]
@@ -68,12 +67,6 @@ const AddExpense = (props) => {
             inputRef={expenseRef}
             onKeyDown={EnterPressHandler}
           />
-          {/* <input
-            type="text"
-            placeholder="Expense"
-            ref={expenseRef}
-            onKeyDown={EnterPressHandler}
-           /> */}
         </div>
         <div
           className={`${styles["expense"]} ${

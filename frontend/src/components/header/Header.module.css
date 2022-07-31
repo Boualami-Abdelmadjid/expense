@@ -1,5 +1,6 @@
 .header {
   color: rgba(245, 245, 245, 0.774);
+  background-image: linear-gradient(to bottom right, #ff928b, #ffac81);
   z-index: 500;
   padding: 1rem;
   text-transform: uppercase;
