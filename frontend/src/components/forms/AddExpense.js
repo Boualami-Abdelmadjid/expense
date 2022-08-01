@@ -33,6 +33,7 @@ const AddExpense = (props) => {
       setIsClicked(true);
     }
     if (isClicked === true) {
+      console.log(csrftoken);
       fetch(`add/${thisMonth}`, {
         method: "POST",
         mode: "same-origin",
