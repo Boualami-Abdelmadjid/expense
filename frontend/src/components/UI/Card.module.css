@@ -1,7 +1,8 @@
 .Card {
   background-image: linear-gradient(to bottom right, #ff928b, #ffac81);
   max-width: 80%;
-  min-width: 900px;
+  min-width: 80vw;
+  
   border-radius: 15px;
   margin-inline: 10%;
   display: inline-block;

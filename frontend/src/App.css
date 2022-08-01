@@ -9,8 +9,8 @@
 .App {
   text-align: center;
   font-family: "Roboto", sans-serif;
-  background-image: linear-gradient(to bottom right, #556270, #ff6b6b);
   min-height: 100vh;
+  background-image: linear-gradient(to bottom right, #556270, #ff6b6b);
 }
 
 .App-logo {
@@ -45,5 +45,11 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 800px) {
+  :root {
+    font-size: 10px;
   }
 }

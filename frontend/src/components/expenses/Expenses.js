@@ -70,13 +70,22 @@ const Expenses = (props) => {
     <Card>
       <FilterExpenses months={months} onChange={monthChangedHandler} />
       <div className={styles.sorting}>
-        <p className={styles.width} onClick={NameSortHandler}>
+        <p
+          className={`${styles.width} ${styles.sort}`}
+          onClick={NameSortHandler}
+        >
           Name
         </p>
-        <p className={styles.width} onClick={valueSortHandler}>
+        <p
+          className={`${styles.width} ${styles.sort}`}
+          onClick={valueSortHandler}
+        >
           Value
         </p>
-        <p className={styles.width} onClick={DateSortHandler}>
+        <p
+          className={`${styles.width} ${styles.sort}`}
+          onClick={DateSortHandler}
+        >
           Date
         </p>
       </div>
