@@ -35,7 +35,6 @@
   color: teal;
 }
 
-
 select {
   font: inherit;
   padding: 0.5rem;
@@ -73,4 +72,22 @@ ion-icon {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-image: linear-gradient(0deg, #bd643a81, #c5501eb4);
+}
+
+.sorting {
+  height: 1.5rem;
+  background-color: wheat;
+  border-radius: 15px;
+  display: flex;
+  justify-content: flex-start;
+  margin: 1rem 1.7rem -0.5rem 1rem;
+  padding: 0.3rem 0.5rem;
+}
+.width {
+  width: 32%;
+  text-align: center;
+}
+
+.sort {
+  cursor: pointer;
 }

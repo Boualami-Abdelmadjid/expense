@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import styles from "./Expenses.module.css";
 import Card from "../UI/Card";
 import FilterExpenses from "./FilterExpenses";
@@ -18,17 +19,40 @@ const months = [
 ];
 
 const Expenses = (props) => {
+  let expensesList = props.expenses;
+
+  const [expList, setExpList] = useState(expensesList);
+  const [sortType, setSortType] = useState("time");
+
+  useEffect(() => {
+    setExpList(expensesList);
+  }, [expensesList]);
+
+  useEffect(() => {
+    let sorted;
+    const sortArray = (type = sortType) => {
+      if (type === "expense") {
+        sorted = [...props.expenses].sort((a, b) => {
+          return a[type].localeCompare(b[type]);
+        });
+      }
+      sorted = [...props.expenses].sort((a, b) => {
+        return b[type] - a[type];
+      });
+      setExpList(sorted);
+    };
+    sortArray(sortType);
+  }, [sortType]);
+
   // Calculate the total of the expenses
-  let totalExpense = props.expenses
+  let totalExpense = expList
     .filter((el) => el.TransType === "expense")
     .reduce((acc, cur) => acc + cur.value, 0);
-  let totalIncome = props.expenses
+  let totalIncome = expList
     .filter((el) => el.TransType === "income")
     .reduce((acc, cur) => acc + cur.value, 0);
 
   let diffenrence = totalIncome - totalExpense;
-
-  // .reduce((acc, cur) => acc.value + cur, 0);
 
   const monthChangedHandler = (enteredMonth) => {
     const monthIndex = months.indexOf(enteredMonth);
@@ -36,14 +60,28 @@ const Expenses = (props) => {
   };
   function deleteHandler() {
     props.onDelete(this);
-    console.log(this);
   }
+
+  const NameSortHandler = () => setSortType("expense");
+  const valueSortHandler = () => setSortType("value");
+  const DateSortHandler = () => setSortType("time");
 
   return (
     <Card>
       <FilterExpenses months={months} onChange={monthChangedHandler} />
+      <div className={styles.sorting}>
+        <p className={styles.width} onClick={NameSortHandler}>
+          Name
+        </p>
+        <p className={styles.width} onClick={valueSortHandler}>
+          Value
+        </p>
+        <p className={styles.width} onClick={DateSortHandler}>
+          Date
+        </p>
+      </div>
       <div className={styles["expensesCard"]}>
-        {props.expenses.map((item, index) => {
+        {expList.map((item, index) => {
           const day = item.time.split("-")[2];
           const month = months[item.time.split("-")[1] - 1];
           const type = item.TransType + "Object";
@@ -55,9 +93,11 @@ const Expenses = (props) => {
               key={index}
               className={`${styles["expenseItem"]} + ${styles[type]}`}
             >
-              <p className={styles.expense + " expense"}>{item.expense}</p>
-              <p className="expenseValue">{item.value} Dzd</p>
-              <p>
+              <p className={`${styles.expense} expense ${styles.width}`}>
+                {item.expense}
+              </p>
+              <p className={`expenseValue ${styles.width}`}>{item.value} Dzd</p>
+              <p className={styles.width}>
                 {day} {month}
               </p>
               <ion-icon

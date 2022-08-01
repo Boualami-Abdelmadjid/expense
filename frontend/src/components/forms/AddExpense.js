@@ -29,7 +29,6 @@ const AddExpense = (props) => {
       number: valueRef.current.value,
       type: transType,
     });
-    console.log(formData);
     if (isClicked === false) {
       setIsClicked(true);
     }
