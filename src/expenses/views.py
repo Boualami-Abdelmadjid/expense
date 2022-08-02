@@ -27,7 +27,6 @@ def deleteItem(request, month):
   if request.method == 'POST':
     itemObject = json.loads(request.body)
     itemObjectId = itemObject['id']
-    print(itemObjectId)
     expenseModel.objects.filter(id = itemObjectId).delete()
   return redirect('getExpenses', month=month)
     
