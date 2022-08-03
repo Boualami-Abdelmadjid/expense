@@ -1,12 +1,21 @@
-expenses-filter__control select {
-    font: inherit;
-    padding: 0.5rem;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 6px;
-    display: inline-block;
-    position: relative;
-    left: 48%;
-    transform: translateX(-50%);
-    margin-top: 0.4rem;
-  }
+select {
+  font: inherit;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 6px;
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  transform: translateX(-50%);
+  margin-top: 0.4rem;
+}
+
+.input {
+  font: inherit;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 6px;
+  margin-top: 0.4rem;
+}

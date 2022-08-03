@@ -36,11 +36,12 @@ const AddExpense = (props) => {
       console.log(csrftoken);
       fetch(`add/${thisMonth}`, {
         method: "POST",
-        mode: "same-origin",
+        mode: "cors",
         headers: {
           "Content-Type": "application/json",
           accept: "application/json",
           "X-CSRFToken": csrftoken,
+          "Access-Control-Allow-Origin": "*",
         },
         body: formData,
       })

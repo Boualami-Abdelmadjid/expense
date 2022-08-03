@@ -32,13 +32,14 @@ const Expenses = (props) => {
     let sorted;
     const sortArray = (type = sortType) => {
       if (type === "expense") {
-        sorted = [...props.expenses].sort((a, b) => {
+        sorted = [...expList].sort((a, b) => {
           return a[type].localeCompare(b[type]);
         });
+      } else if ((type = "value" || type == "time")) {
+        sorted = [...expList].sort((a, b) => {
+          return b[type] - a[type];
+        });
       }
-      sorted = [...props.expenses].sort((a, b) => {
-        return b[type] - a[type];
-      });
       setExpList(sorted);
     };
     sortArray(sortType);
@@ -58,6 +59,14 @@ const Expenses = (props) => {
     const monthIndex = months.indexOf(enteredMonth);
     props.onFilter((monthIndex + 1).toString().padStart(2, 0));
   };
+  const textSearchHandler = (enteredText) => {
+    setExpList(
+      props.expenses.filter((el) =>
+        el.expense.toLowerCase().includes(enteredText.toLowerCase())
+      )
+    );
+  };
+
   function deleteHandler() {
     props.onDelete(this);
   }
@@ -68,7 +77,11 @@ const Expenses = (props) => {
 
   return (
     <Card>
-      <FilterExpenses months={months} onChange={monthChangedHandler} />
+      <FilterExpenses
+        months={months}
+        onMonthChanged={monthChangedHandler}
+        onTextChanged={textSearchHandler}
+      />
       <div className={styles.sorting}>
         <p
           className={`${styles.width} ${styles.sort}`}
@@ -102,7 +115,9 @@ const Expenses = (props) => {
               key={index}
               className={`${styles["expenseItem"]} + ${styles[type]}`}
             >
-              <p className={`${styles.expense} expense ${styles.width}`}>
+              <p
+                className={`${styles.expense} ${styles.expense} ${styles.width}`}
+              >
                 {item.expense}
               </p>
               <p className={`expenseValue ${styles.width}`}>{item.value} Dzd</p>
@@ -111,6 +126,7 @@ const Expenses = (props) => {
               </p>
               <ion-icon
                 name="trash-outline"
+                className={"delete"}
                 onClick={deleteHandler.bind(identifier)}
               ></ion-icon>
             </li>

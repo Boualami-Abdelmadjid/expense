@@ -35,18 +35,7 @@
   color: teal;
 }
 
-select {
-  font: inherit;
-  padding: 0.5rem;
-  font-size: 1rem;
-  font-weight: bold;
-  border-radius: 6px;
-  display: inline-block;
-  position: relative;
-  left: 48%;
-  transform: translateX(-50%);
-  margin-top: 0.4rem;
-}
+
 
 ion-icon {
   width: 2rem;
@@ -54,6 +43,10 @@ ion-icon {
   margin-right: 1rem;
   color: rgb(211, 68, 68);
   cursor: pointer;
+}
+.delete:hover {
+  transform: scale(1.05);
+  transition: all 0.2s;
 }
 
 .expensesCard {

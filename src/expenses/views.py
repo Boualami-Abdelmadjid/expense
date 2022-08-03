@@ -19,7 +19,7 @@ def addItem(request, month):
 @api_view(['GET',])
 def getExepenses(request, month):
    if request.method == 'GET':
-      expenses = expenseModel.objects.raw(f'SELECT * from expenses_expensemodel where "time" BETWEEN date("2022-{month}-01") And date("2022-{month}-31") ORDER BY -"time"')
+      expenses = expenseModel.objects.raw(f'SELECT * from expenses_expensemodel where "time" BETWEEN date("2022-{month}-01") And date("2022-{month}-31") ORDER BY time DESC')
       serializer = itemsSerializer(expenses, many=True)
       return Response(serializer.data)
 
