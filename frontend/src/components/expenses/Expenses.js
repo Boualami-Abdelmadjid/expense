@@ -35,7 +35,7 @@ const Expenses = (props) => {
         sorted = [...expList].sort((a, b) => {
           return a[type].localeCompare(b[type]);
         });
-      } else if ((type = "value" || type == "time")) {
+      } else {
         sorted = [...expList].sort((a, b) => {
           return b[type] - a[type];
         });
@@ -104,8 +104,9 @@ const Expenses = (props) => {
       </div>
       <div className={styles["expensesCard"]}>
         {expList.map((item, index) => {
-          const day = item.time.split("-")[2];
-          const month = months[item.time.split("-")[1] - 1];
+          const time = new Date(item.time);
+          const day = time.getDate();
+          const month = months[time.getMonth() - 1];
           const type = item.TransType + "Object";
           const identifier = {
             id: item.id,

@@ -15,7 +15,7 @@ const AddExpense = (props) => {
   const incomeRadioRef = useRef();
   const expenseRadioRef = useRef();
 
-  const csrftoken = csrfCtx.getCookie("csrftoken");
+  // const csrftoken = csrfCtx.getCookie("csrftoken");
 
   const EnterPressHandler = (e) => {
     if (e.key === "Enter") {
@@ -33,14 +33,14 @@ const AddExpense = (props) => {
       setIsClicked(true);
     }
     if (isClicked === true) {
-      console.log(csrftoken);
+      console.log(document.cookie.split(";")[0].split("=")[1]);
       fetch(`add/${thisMonth}`, {
         method: "POST",
         mode: "cors",
         headers: {
           "Content-Type": "application/json",
           accept: "application/json",
-          "X-CSRFToken": csrftoken,
+          "X-CSRFToken": document.cookie.split(";")[0].split("=")[1],
           "Access-Control-Allow-Origin": "*",
         },
         body: formData,

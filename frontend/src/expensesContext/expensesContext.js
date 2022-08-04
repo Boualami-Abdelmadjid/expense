@@ -1,7 +1,7 @@
 import React from "react";
 
 const csrfContext = React.createContext({
-  getCookie: "",
+  cookie: "",
 });
 
 export default csrfContext;
