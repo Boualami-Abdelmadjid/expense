@@ -19,3 +19,14 @@ select {
   border-radius: 6px;
   margin-top: 0.4rem;
 }
+@media screen and (max-width: 800px) {
+  .input {
+    display: block;
+    margin: 0.2rem auto;
+  }
+  select {
+    display: block;
+    position: relative;
+    left: 50%;
+  }
+}

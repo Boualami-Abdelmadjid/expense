@@ -23,6 +23,23 @@ const Expenses = (props) => {
 
   const [expList, setExpList] = useState(expensesList);
   const [sortType, setSortType] = useState("time");
+  const windowEventListener = (e) => {
+    if (e.key === "ArrowUp" && e.altKey) {
+      setExpList(props.expenses.filter((el) => el.TransType === "expense"));
+    }
+    if (e.key === "ArrowDown" && e.altKey) {
+      setExpList(props.expenses.filter((el) => el.TransType === "income"));
+    }
+    if (e.key === "ArrowRight" && e.altKey) {
+      setExpList(props.expenses);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("keydown", windowEventListener);
+    return () => {
+      window.removeEventListener("keydown", windowEventListener);
+    };
+  }, [props.expenses]);
 
   useEffect(() => {
     setExpList(expensesList);

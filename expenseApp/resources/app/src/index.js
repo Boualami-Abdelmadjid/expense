@@ -41,15 +41,17 @@ const createWindow = () => {
 
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    show: false,
+    icon: "./Chrisbanks2-Cold-Fusion-Hd-Dollar-sign.ico",
   });
-
+  mainWindow.maximize();
+  // mainWindow.show();
   // and load the index.html of the app.
   mainWindow.loadURL("http://localhost:8000");
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
+  mainWindow.on("ready-to-show", mainWindow.show);
 
   // Emitted when the window is closed.
   mainWindow.on("closed", () => {

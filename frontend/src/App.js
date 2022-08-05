@@ -37,6 +37,7 @@ function App() {
       .then((data) => setExpenses(data));
   };
   const addExpenseHandler = (expenses) => setExpenses(expenses);
+  
 
   return (
     <div className="App">
