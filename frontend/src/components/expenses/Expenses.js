@@ -20,6 +20,7 @@ const months = [
 
 const Expenses = (props) => {
   let expensesList = props.expenses;
+  console.log(props.expenses);
 
   const [expList, setExpList] = useState(expensesList);
   const [sortType, setSortType] = useState("time");
@@ -48,11 +49,11 @@ const Expenses = (props) => {
   useEffect(() => {
     let sorted;
     const sortArray = (type = sortType) => {
-      if (type === "expense") {
+      if (type === "expense" || type === "time") {
         sorted = [...expList].sort((a, b) => {
           return a[type].localeCompare(b[type]);
         });
-      } else {
+      } else if (type === "value") {
         sorted = [...expList].sort((a, b) => {
           return b[type] - a[type];
         });
@@ -132,6 +133,7 @@ const Expenses = (props) => {
             <li
               key={index}
               className={`${styles["expenseItem"]} + ${styles[type]}`}
+              exit={{ opacity: 0 }}
             >
               <p
                 className={`${styles.expense} ${styles.expense} ${styles.width}`}
