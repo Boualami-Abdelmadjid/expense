@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./Expenses.module.css";
 import Card from "../UI/Card";
+import { motion, AnimatePresence } from "framer-motion";
 import FilterExpenses from "./FilterExpenses";
 
 const months = [
@@ -121,37 +122,44 @@ const Expenses = (props) => {
         </p>
       </div>
       <div className={styles["expensesCard"]}>
-        {expList.map((item, index) => {
-          const time = new Date(item.time);
-          const day = time.getDate();
-          const month = months[time.getMonth() - 1];
-          const type = item.TransType + "Object";
-          const identifier = {
-            id: item.id,
-          };
-          return (
-            <li
-              key={index}
-              className={`${styles["expenseItem"]} + ${styles[type]}`}
-              exit={{ opacity: 0 }}
-            >
-              <p
-                className={`${styles.expense} ${styles.expense} ${styles.width}`}
+        <AnimatePresence>
+          {expList.map((item, index) => {
+            const time = new Date(item.time);
+            const day = time.getDate();
+            const month = months[time.getMonth() - 1];
+            const type = item.TransType + "Object";
+            const identifier = {
+              id: item.id,
+            };
+            return (
+              <motion.li
+                key={time.toString()}
+                className={`${styles["expenseItem"]} + ${styles[type]}`}
+                animate={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0.2, x: "-100vw" }}
+                inlist
+                exit={{ opacity: 0, x: "100vw" }}
               >
-                {item.expense}
-              </p>
-              <p className={`expenseValue ${styles.width}`}>{item.value} Dzd</p>
-              <p className={styles.width}>
-                {day} {month}
-              </p>
-              <ion-icon
-                name="trash-outline"
-                className={"delete"}
-                onClick={deleteHandler.bind(identifier)}
-              ></ion-icon>
-            </li>
-          );
-        })}
+                <p
+                  className={`${styles.expense} ${styles.expense} ${styles.width}`}
+                >
+                  {item.expense}
+                </p>
+                <p className={`expenseValue ${styles.width}`}>
+                  {item.value} Dzd
+                </p>
+                <p className={styles.width}>
+                  {day} {month}
+                </p>
+                <ion-icon
+                  name="trash-outline"
+                  className={"delete"}
+                  onClick={deleteHandler.bind(identifier)}
+                ></ion-icon>
+              </motion.li>
+            );
+          })}
+        </AnimatePresence>
       </div>
       <p className={styles.total}>Income: {totalIncome} Dzd</p>
       <p className={styles.total}>Expense: {totalExpense} Dzd</p>
