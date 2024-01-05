@@ -1,4 +1,4 @@
-Personal expense tracker app <br>
+# Personal expense tracker app <br>
 You can keep track of your expenses and savings <br>
 Filter by month, name and type <br>
 Filter by month from the dropdown menu <br> 
